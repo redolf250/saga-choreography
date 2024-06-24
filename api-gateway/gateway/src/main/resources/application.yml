@@ -1,0 +1,60 @@
+logging:
+    level:
+        org:
+            springframework:
+                boot:
+                    cloud:
+                        gateway: trace
+                        gateway.route.RouteDefinitionLocator: debug
+        root: info
+#    charset:
+#        console:
+
+management:
+    endpoint:
+        beans:
+            enabled: true
+        configprops:
+            enabled: true
+        health:
+            show-details: always
+        shutdown:
+            enabled: true
+    endpoints:
+        enabled-by-default: true
+        web:
+            exposure:
+                include: '*'
+server:
+    port: 8083
+spring:
+    application:
+        name: api-gateway
+    boot:
+        admin:
+            client:
+                url: http://localhost:8084
+    main:
+        web-application-type: reactive
+
+
+#    cloud:
+#        gateway:
+#            routes[0]:
+#                id: discovery-server
+#                uri: lb://discovery-server
+#                predicates[0]: Path:/discovery-server/**
+
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka
+        fetch-registry: 'true'
+    instance:
+        preferIpAddress: true
+        instance-id: ${spring.application.name}:${random.uuid}
+
+
+
+

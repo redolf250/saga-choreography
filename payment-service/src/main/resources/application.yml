@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    function:
+      definition: paymentProcessor
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+      bindings:
+        paymentProcessor-in-0:
+          destination: saga-order-event
+        paymentProcessor-out-0:
+          destination: saga-payment-event

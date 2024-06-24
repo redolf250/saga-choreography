@@ -1,0 +1,17 @@
+spring:
+    cloud:
+        function:
+            definition: orderSupplier;paymentEventConsumer;paymentConsumer
+        stream:
+            kafka:
+                binder:
+                    brokers: localhost:9092
+            bindings:
+                orderSupplier-out-0:
+                    destination: saga-order-event
+                paymentEventConsumer-in-0:
+                    destination: saga-payment-event
+                paymentConsumer-in-0:
+                    destination: saga-payment-event
+
+
